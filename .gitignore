@@ -34,6 +34,6 @@ build/
 
 
 ###############
-src/main/java/com/filiperobot/aluraforumapi/aluraTEMP
-src/main/java/com/filiperobot/aluraforumapi/controller/*
-src/main/java/com/filiperobot/aluraforumapi/domain/*
+/src/main/java/com/filiperobot/aluraforumapi/aluraTEMP
+/src/main/java/com/filiperobot/aluraforumapi/controller
+/src/main/java/com/filiperobot/aluraforumapi/domain
