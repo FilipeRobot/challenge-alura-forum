@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
+@ToString
 public class Topico {
 
     @Id
@@ -31,14 +33,27 @@ public class Topico {
     @Enumerated(EnumType.STRING)
     private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "autor")
     private Usuario autor;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "curso")
     private Curso curso;
 
     @OneToMany(mappedBy = "topico")
     private List<Resposta> respostas = new ArrayList<>();
+
+    public Topico(int qtd) {
+        for (int i = 0; i < qtd; i++){
+            respostas.add(new Resposta());
+        }
+    }
+
+    public Topico(DadosCadastroTopico dadosTopico) {
+        this.titulo = dadosTopico.titulo();
+        this.mensagem = dadosTopico.mensagem();
+//        this.autor = new Usuario(dados.autor());
+        this.curso = new Curso(dadosTopico.curso());
+    }
 }

@@ -1,9 +1,7 @@
 package com.filiperobot.aluraforumapi.controller;
 
-import com.filiperobot.aluraforumapi.domain.course.Curso;
-import com.filiperobot.aluraforumapi.domain.course.CursoRepository;
-import com.filiperobot.aluraforumapi.domain.course.DadosCurso;
-import com.filiperobot.aluraforumapi.domain.course.DadosCursoCompleto;
+import com.filiperobot.aluraforumapi.domain.course.*;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -24,7 +22,7 @@ public class CursoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosCursoCompleto> cadastrar(@RequestBody DadosCurso dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DadosCursoCompleto> cadastrar(@RequestBody @Valid DadosCurso dados, UriComponentsBuilder uriBuilder) {
         var curso = cursoRepository.save(new Curso(dados));
 
         var uri = uriBuilder.path("/cursos/{id}").buildAndExpand(curso.getId()).toUri();
@@ -47,7 +45,7 @@ public class CursoController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<DadosCursoCompleto> atualizar(@RequestBody DadosCursoCompleto dados) {
+    public ResponseEntity<DadosCursoCompleto> atualizar(@RequestBody @Valid DadosCursoAtualizar dados) {
         var curso = cursoRepository.getReferenceById(dados.id());
 
         curso.atualizar(dados);
@@ -58,9 +56,10 @@ public class CursoController {
     @DeleteMapping("{id}")
     @Transactional
     public ResponseEntity<Void> remover(@PathVariable Long id){
-        cursoRepository.findById(id).ifPresentOrElse(
-                curso -> {cursoRepository.deleteById(curso.getId());},
-                ()  -> {System.out.println("Não é possível excluir");});
+        cursoRepository.deleteById(id);
+//        cursoRepository.findById(id).ifPresentOrElse(
+//                curso -> {cursoRepository.deleteById(curso.getId());},
+//                ()  -> {System.out.println("Não é possível excluir");});
 
         return ResponseEntity.noContent().build();
     }

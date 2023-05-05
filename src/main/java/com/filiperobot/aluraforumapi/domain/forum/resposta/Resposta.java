@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
+@ToString
 public class Resposta {
 
     @Id
@@ -22,13 +24,13 @@ public class Resposta {
 
     private String mensagem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "topico")
     private Topico topico;
 
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "autor")
     private Usuario autor;
 
