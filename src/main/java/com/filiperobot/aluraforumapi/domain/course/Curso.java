@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Table(name = "cursos")
 @Entity(name = "curso")
 @NoArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
+@ToString
 public class Curso {
 
     @Id
@@ -17,4 +19,14 @@ public class Curso {
     private Long id;
     private String nome;
     private String categoria;
+
+    public Curso(DadosCurso dadosCurso) {
+        this.nome = dadosCurso.nome();
+        this.categoria = dadosCurso.categoria();
+    }
+
+    public void atualizar(DadosCursoCompleto dados) {
+        this.nome = dados.nome();
+        this.categoria = dados.categoria();
+    }
 }
