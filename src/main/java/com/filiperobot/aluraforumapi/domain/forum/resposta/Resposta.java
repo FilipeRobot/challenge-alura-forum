@@ -1,5 +1,6 @@
-package com.filiperobot.aluraforumapi.domain.forum;
+package com.filiperobot.aluraforumapi.domain.forum.resposta;
 
+import com.filiperobot.aluraforumapi.domain.forum.topico.Topico;
 import com.filiperobot.aluraforumapi.domain.user.Usuario;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

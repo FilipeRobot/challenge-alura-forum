@@ -1,7 +1,8 @@
-package com.filiperobot.aluraforumapi.domain.forum;
+package com.filiperobot.aluraforumapi.domain.forum.topico;
 
 
 import com.filiperobot.aluraforumapi.domain.course.Curso;
+import com.filiperobot.aluraforumapi.domain.forum.resposta.Resposta;
 import com.filiperobot.aluraforumapi.domain.user.Usuario;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

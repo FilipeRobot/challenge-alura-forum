@@ -1,4 +1,4 @@
-package com.filiperobot.aluraforumapi.domain.forum;
+package com.filiperobot.aluraforumapi.domain.forum.topico;
 
 public enum StatusTopico {
     NAO_RESPONDIDO,
