@@ -22,8 +22,9 @@ public class CursoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosCursoCompleto> cadastrar(@RequestBody @Valid DadosCurso dados, UriComponentsBuilder uriBuilder) {
-        var curso = cursoRepository.save(new Curso(dados));
+    public ResponseEntity<DadosCursoCompleto> cadastrar(
+            @RequestBody @Valid DadosCurso dadosCurso, UriComponentsBuilder uriBuilder) {
+        var curso = cursoRepository.save(new Curso(dadosCurso));
 
         var uri = uriBuilder.path("/cursos/{id}").buildAndExpand(curso.getId()).toUri();
 
@@ -45,10 +46,10 @@ public class CursoController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<DadosCursoCompleto> atualizar(@RequestBody @Valid DadosCursoAtualizar dados) {
-        var curso = cursoRepository.getReferenceById(dados.id());
+    public ResponseEntity<DadosCursoCompleto> atualizar(@RequestBody @Valid DadosCursoAtualizar dadosCursoAtualizacao) {
+        var curso = cursoRepository.getReferenceById(dadosCursoAtualizacao.id());
 
-        curso.atualizar(dados);
+        curso.atualizar(dadosCursoAtualizacao);
 
         return ResponseEntity.ok(new DadosCursoCompleto(curso));
     }
@@ -56,10 +57,10 @@ public class CursoController {
     @DeleteMapping("{id}")
     @Transactional
     public ResponseEntity<Void> remover(@PathVariable Long id){
-        cursoRepository.deleteById(id);
-//        cursoRepository.findById(id).ifPresentOrElse(
-//                curso -> {cursoRepository.deleteById(curso.getId());},
-//                ()  -> {System.out.println("Não é possível excluir");});
+//        cursoRepository.deleteById(id);
+        cursoRepository.findById(id).ifPresentOrElse(
+                cursoRepository::delete,
+                ()  -> {System.out.println("Não é possível excluir curso");});
 
         return ResponseEntity.noContent().build();
     }
