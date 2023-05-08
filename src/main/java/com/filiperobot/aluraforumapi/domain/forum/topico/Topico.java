@@ -2,7 +2,10 @@ package com.filiperobot.aluraforumapi.domain.forum.topico;
 
 
 import com.filiperobot.aluraforumapi.domain.course.Curso;
+import com.filiperobot.aluraforumapi.domain.course.DadosCursoCompleto;
 import com.filiperobot.aluraforumapi.domain.forum.resposta.Resposta;
+import com.filiperobot.aluraforumapi.domain.user.DadosUsuario;
+import com.filiperobot.aluraforumapi.domain.user.DadosUsuarioCompleto;
 import com.filiperobot.aluraforumapi.domain.user.Usuario;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -45,15 +48,24 @@ public class Topico {
     private List<Resposta> respostas = new ArrayList<>();
 
     public Topico(int qtd) {
+        // Criar uma "qtd"(quantidade) de respostas vazias em um topico também vazio
         for (int i = 0; i < qtd; i++){
             respostas.add(new Resposta());
         }
     }
 
-    public Topico(DadosCadastroTopico dadosTopico) {
+    public Topico(DadosCompletoCadastroTopico dadosTopico) {
         this.titulo = dadosTopico.titulo();
         this.mensagem = dadosTopico.mensagem();
-//        this.autor = new Usuario(dados.autor());
-        this.curso = new Curso(dadosTopico.curso());
+        this.autor = dadosTopico.autor();
+        this.curso = dadosTopico.curso();
+    }
+
+    public DadosUsuarioCompleto getDadosAutor() {
+        return new DadosUsuarioCompleto(this.autor);
+    }
+
+    public DadosCursoCompleto getDadosCurso() {
+        return new DadosCursoCompleto(this.curso);
     }
 }
