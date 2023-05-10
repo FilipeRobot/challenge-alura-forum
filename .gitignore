@@ -31,9 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-
-###############
-/src/main/java/com/filiperobot/aluraforumapi/aluraTEMP
-/src/main/java/com/filiperobot/aluraforumapi/controller
-/src/main/java/com/filiperobot/aluraforumapi/domain
