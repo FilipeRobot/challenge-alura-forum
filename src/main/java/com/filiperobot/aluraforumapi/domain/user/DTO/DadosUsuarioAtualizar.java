@@ -1,4 +1,4 @@
-package com.filiperobot.aluraforumapi.domain.user;
+package com.filiperobot.aluraforumapi.domain.user.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

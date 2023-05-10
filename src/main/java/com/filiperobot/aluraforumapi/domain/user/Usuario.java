@@ -1,14 +1,14 @@
 package com.filiperobot.aluraforumapi.domain.user;
 
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuario;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuarioAtualizar;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Table(name = "usuarios")
 @Entity(name = "usuario")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
 @ToString

@@ -1,4 +1,7 @@
-package com.filiperobot.aluraforumapi.domain.forum.topico;
+package com.filiperobot.aluraforumapi.domain.forum.topico.DTO;
+
+import com.filiperobot.aluraforumapi.domain.forum.topico.StatusTopico;
+import com.filiperobot.aluraforumapi.domain.forum.topico.Topico;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.filiperobot.aluraforumapi.domain.course;
+package com.filiperobot.aluraforumapi.domain.course.DTO;
 
 import jakarta.validation.constraints.NotNull;
 

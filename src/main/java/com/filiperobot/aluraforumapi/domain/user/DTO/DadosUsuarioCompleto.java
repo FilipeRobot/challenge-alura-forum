@@ -1,4 +1,6 @@
-package com.filiperobot.aluraforumapi.domain.user;
+package com.filiperobot.aluraforumapi.domain.user.DTO;
+
+import com.filiperobot.aluraforumapi.domain.user.Usuario;
 
 public record DadosUsuarioCompleto(Long id, String nome, String email, String senha) {
     public DadosUsuarioCompleto(Usuario usuario) {

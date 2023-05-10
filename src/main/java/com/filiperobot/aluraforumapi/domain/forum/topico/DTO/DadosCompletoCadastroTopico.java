@@ -1,4 +1,4 @@
-package com.filiperobot.aluraforumapi.domain.forum.topico;
+package com.filiperobot.aluraforumapi.domain.forum.topico.DTO;
 
 import com.filiperobot.aluraforumapi.domain.course.Curso;
 import com.filiperobot.aluraforumapi.domain.user.Usuario;

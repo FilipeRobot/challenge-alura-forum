@@ -1,7 +1,11 @@
 package com.filiperobot.aluraforumapi.controller;
 
 import com.filiperobot.aluraforumapi.domain.course.*;
+import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCurso;
+import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoAtualizar;
+import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoCompleto;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -12,13 +16,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/cursos")
+@RequiredArgsConstructor
 public class CursoController {
 
     private final CursoRepository cursoRepository;
-
-    public CursoController(CursoRepository cursoRepository) {
-        this.cursoRepository = cursoRepository;
-    }
 
     @PostMapping
     @Transactional
@@ -38,7 +39,7 @@ public class CursoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosCursoCompleto>> listaCursos(@PageableDefault(size = 10)Pageable pageable) {
+    public ResponseEntity<Page<DadosCursoCompleto>> listaCursos(@PageableDefault Pageable pageable) {
         Page<DadosCursoCompleto> cursos = cursoRepository.findAll(pageable).map(DadosCursoCompleto::new);
 
         return ResponseEntity.ok(cursos);
@@ -57,10 +58,12 @@ public class CursoController {
     @DeleteMapping("{id}")
     @Transactional
     public ResponseEntity<Void> remover(@PathVariable Long id){
-//        cursoRepository.deleteById(id);
         cursoRepository.findById(id).ifPresentOrElse(
                 cursoRepository::delete,
-                ()  -> {System.out.println("Não é possível excluir curso");});
+                ()  -> {
+                    throw new IllegalArgumentException("Curso não existe, não é possível deleta-lo");
+                }
+        );
 
         return ResponseEntity.noContent().build();
     }

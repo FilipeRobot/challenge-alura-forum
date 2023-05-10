@@ -1,7 +1,11 @@
 package com.filiperobot.aluraforumapi.controller;
 
 import com.filiperobot.aluraforumapi.domain.user.*;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuario;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuarioAtualizar;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuarioCompleto;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
+@RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
-    public UsuarioController(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
 
     @PostMapping
     @Transactional
@@ -60,7 +62,7 @@ public class UsuarioController {
         usuarioRepository.findById(id).ifPresentOrElse(
                 usuarioRepository::delete,
                 () -> {
-                    System.out.println("Não é possível excluir usuário");
+                    throw new IllegalArgumentException("Usuário não existe, não é possível deleta-lo");
                 }
         );
 

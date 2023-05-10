@@ -1,10 +1,11 @@
-package com.filiperobot.aluraforumapi.domain.forum.topico;
+package com.filiperobot.aluraforumapi.domain.forum.topico.DTO;
 
-import com.filiperobot.aluraforumapi.domain.course.DadosCursoCompleto;
-import com.filiperobot.aluraforumapi.domain.user.DadosUsuarioCompleto;
+import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoCompleto;
+import com.filiperobot.aluraforumapi.domain.forum.topico.StatusTopico;
+import com.filiperobot.aluraforumapi.domain.forum.topico.Topico;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuarioCompleto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public record DadosTopicoCompleto(Long id, String titulo, String mensagem,
                                   LocalDateTime dataCriacao, StatusTopico status,
