@@ -5,10 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record DadosCadastroUsuario(
-        @NotBlank
+        @NotBlank(message = "{nome.obrigatorio}")
         String nome,
-        @NotBlank @Email
+        @NotBlank(message = "{email.obrigatorio}")
+        @Email(message = "{email.invalido}")
         String email,
-        @NotBlank @Size(min = 4)
+        @NotBlank(message = "{senha.obrigatoria}")
+        @Size(min = 4, message = "{senha.invalida}")
         String senha) {
 }

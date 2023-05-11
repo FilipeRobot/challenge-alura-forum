@@ -4,6 +4,7 @@ import com.filiperobot.aluraforumapi.domain.course.CursoRepository;
 import com.filiperobot.aluraforumapi.domain.forum.topico.*;
 import com.filiperobot.aluraforumapi.domain.forum.topico.DTO.*;
 import com.filiperobot.aluraforumapi.domain.user.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,9 +30,13 @@ public class ForumController {
     public ResponseEntity<DadosTopicoCompleto> criarTopico(
             @RequestBody @Valid DadosCadastroTopico dadosNovoTopico,
             UriComponentsBuilder uriBuilder) {
-        var usuario = usuarioRepository.getReferenceById(dadosNovoTopico.autor());
+        var usuario = usuarioRepository.findById(dadosNovoTopico.autor()).orElseThrow(
+                () -> new EntityNotFoundException("Autor não encontrado")
+        );
 
-        var curso = cursoRepository.getReferenceById(dadosNovoTopico.curso());
+        var curso = cursoRepository.findById(dadosNovoTopico.curso()).orElseThrow(
+                () -> new EntityNotFoundException("Curso não encontrado")
+        );
 
         var dadosCadastroTopico = new DadosCompletoCadastroTopico(
                 dadosNovoTopico.titulo(),

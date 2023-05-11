@@ -4,12 +4,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosCadastroTopico(
-        @NotBlank
+        @NotBlank(message = "{titulo.obrigatorio}")
         String titulo,
-        @NotBlank
+        @NotBlank(message = "{mensagem.obrigatoria}")
         String mensagem,
-        @NotNull
+        @NotNull(message = "{autor.obrigatorio}")
         Long autor,
-        @NotNull
+        @NotNull(message = "{curso.obrigatorio}")
         Long curso) {
 }
