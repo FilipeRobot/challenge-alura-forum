@@ -1,6 +1,7 @@
 package com.filiperobot.aluraforumapi.domain.user;
 
-import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuario;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosCadastroUsuario;
 import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuarioAtualizar;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,12 +18,17 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, unique = true)
     private String email;
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
+    @Column(nullable = false)
     private String senha;
 
-    public Usuario(DadosUsuario dadosUsuario) {
+    public Usuario(DadosCadastroUsuario dadosUsuario) {
         this.nome = dadosUsuario.nome();
         this.email = dadosUsuario.email();
         this.senha = dadosUsuario.senha();

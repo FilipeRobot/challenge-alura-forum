@@ -2,10 +2,9 @@ package com.filiperobot.aluraforumapi.domain.user.DTO;
 
 import com.filiperobot.aluraforumapi.domain.user.Usuario;
 
-public record DadosUsuarioCompleto(Long id, String nome, String email) {
-    public DadosUsuarioCompleto(Usuario usuario) {
+public record DadosListagemUsuario(String nome, String email) {
+    public DadosListagemUsuario(Usuario usuario) {
         this(
-                usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail()
         );

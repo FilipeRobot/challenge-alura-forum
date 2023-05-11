@@ -1,6 +1,6 @@
 package com.filiperobot.aluraforumapi.domain.course;
 
-import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCurso;
+import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCadastroCurso;
 import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoAtualizar;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,12 +17,14 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, name = "nome")
+
+    @Column(name = "nome", nullable = false, unique = true)
     private String nome;
-    @Column(nullable = false, name = "categoria")
+
+    @Column(name = "categoria", nullable = false)
     private String categoria;
 
-    public Curso(DadosCurso dadosCurso) {
+    public Curso(DadosCadastroCurso dadosCurso) {
         this.nome = dadosCurso.nome();
         this.categoria = dadosCurso.categoria();
     }

@@ -28,19 +28,25 @@ public class Topico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String titulo;
+
+    @Column(nullable = false, unique = true)
     private String mensagem;
+
+    @Column(nullable = false)
     private final LocalDateTime dataCriacao = LocalDateTime.now();
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "autor")
+    @JoinColumn(name = "autor", nullable = false)
     private Usuario autor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "curso")
+    @JoinColumn(name = "curso", nullable = false)
     private Curso curso;
 
     @OneToMany(mappedBy = "topico")

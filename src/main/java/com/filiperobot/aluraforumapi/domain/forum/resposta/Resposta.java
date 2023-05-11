@@ -3,16 +3,14 @@ package com.filiperobot.aluraforumapi.domain.forum.resposta;
 import com.filiperobot.aluraforumapi.domain.forum.topico.Topico;
 import com.filiperobot.aluraforumapi.domain.user.Usuario;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Table(name = "respostas")
 @Entity(name = "resposta")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
 @ToString

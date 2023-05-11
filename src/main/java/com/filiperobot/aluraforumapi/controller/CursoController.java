@@ -1,9 +1,10 @@
 package com.filiperobot.aluraforumapi.controller;
 
 import com.filiperobot.aluraforumapi.domain.course.*;
-import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCurso;
+import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCadastroCurso;
 import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoAtualizar;
 import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoCompleto;
+import com.filiperobot.aluraforumapi.domain.course.DTO.DadosListagemCurso;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ public class CursoController {
     @PostMapping
     @Transactional
     public ResponseEntity<DadosCursoCompleto> cadastrar(
-            @RequestBody @Valid DadosCurso dadosCurso, UriComponentsBuilder uriBuilder) {
+            @RequestBody @Valid DadosCadastroCurso dadosCurso, UriComponentsBuilder uriBuilder) {
         var curso = cursoRepository.save(new Curso(dadosCurso));
 
         var uri = uriBuilder.path("/cursos/{id}").buildAndExpand(curso.getId()).toUri();
@@ -39,8 +40,8 @@ public class CursoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosCursoCompleto>> listaCursos(@PageableDefault Pageable pageable) {
-        Page<DadosCursoCompleto> cursos = cursoRepository.findAll(pageable).map(DadosCursoCompleto::new);
+    public ResponseEntity<Page<DadosListagemCurso>> listaCursos(@PageableDefault Pageable pageable) {
+        Page<DadosListagemCurso> cursos = cursoRepository.findAll(pageable).map(DadosListagemCurso::new);
 
         return ResponseEntity.ok(cursos);
     }

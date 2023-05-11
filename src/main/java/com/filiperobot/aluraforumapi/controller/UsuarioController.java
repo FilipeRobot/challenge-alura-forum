@@ -1,9 +1,10 @@
 package com.filiperobot.aluraforumapi.controller;
 
 import com.filiperobot.aluraforumapi.domain.user.*;
-import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuario;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosCadastroUsuario;
 import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuarioAtualizar;
 import com.filiperobot.aluraforumapi.domain.user.DTO.DadosUsuarioCompleto;
+import com.filiperobot.aluraforumapi.domain.user.DTO.DadosListagemUsuario;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 @RequiredArgsConstructor
 public class UsuarioController {
 
@@ -23,7 +24,7 @@ public class UsuarioController {
     @PostMapping
     @Transactional
     public ResponseEntity<DadosUsuarioCompleto> cadastrar(
-            @RequestBody @Valid DadosUsuario dadosUsuario, UriComponentsBuilder uriBuilder) {
+            @RequestBody @Valid DadosCadastroUsuario dadosUsuario, UriComponentsBuilder uriBuilder) {
         var usuario = usuarioRepository.save(new Usuario(dadosUsuario));
 
         var uri = uriBuilder.path("/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
@@ -38,18 +39,18 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DadosUsuarioCompleto>> listarUsuarios() {
+    public ResponseEntity<List<DadosListagemUsuario>> listarUsuarios() {
         var usuarios = usuarioRepository
                 .findAll()
                 .stream()
-                .map(DadosUsuarioCompleto::new)
+                .map(DadosListagemUsuario::new)
                 .toList();
         return ResponseEntity.ok(usuarios);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity<DadosUsuarioCompleto> atualizar(@RequestBody DadosUsuarioAtualizar dadosUsuarioAtualizacao) {
+    public ResponseEntity<DadosUsuarioCompleto> atualizar(@RequestBody @Valid DadosUsuarioAtualizar dadosUsuarioAtualizacao) {
         var usuario = usuarioRepository.getReferenceById(dadosUsuarioAtualizacao.id());
         usuario.atualizar(dadosUsuarioAtualizacao);
 
