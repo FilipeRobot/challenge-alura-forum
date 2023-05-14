@@ -49,7 +49,7 @@ public class Topico {
     @JoinColumn(name = "curso", nullable = false)
     private Curso curso;
 
-    @OneToMany(mappedBy = "topico")
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Resposta> respostas = new ArrayList<>();
 
     public Topico(DadosCompletoCadastroTopico dadosTopico) {
