@@ -1,6 +1,7 @@
 package com.filiperobot.aluraforumapi.domain.forum.resposta;
 
-import com.filiperobot.aluraforumapi.domain.forum.resposta.DTO.DadosCadastroResposta;
+import com.filiperobot.aluraforumapi.domain.forum.resposta.DTO.DadosAtualizarResposta;
+import com.filiperobot.aluraforumapi.domain.forum.resposta.DTO.DadosCompletoCadastroResposta;
 import com.filiperobot.aluraforumapi.domain.forum.topico.Topico;
 import com.filiperobot.aluraforumapi.domain.user.Usuario;
 import jakarta.persistence.*;
@@ -35,9 +36,19 @@ public class Resposta {
 
     private Boolean solucao = false;
 
-    public Resposta(DadosCadastroResposta dadosResposta, Topico topico) {
-        this.mensagem = dadosResposta.mensagem();
-        this.topico = topico;
-        this.autor = topico.getAutor();
+    public Resposta(DadosCompletoCadastroResposta dados) {
+        this.mensagem = dados.mensagem();
+        this.autor = dados.autor();
+        this.topico = dados.topico();
+    }
+
+    public void atualizar(DadosAtualizarResposta respostaAtualizada){
+        if (respostaAtualizada.mensagem() != null) {
+            this.mensagem = respostaAtualizada.mensagem();
+        }
+
+        if (respostaAtualizada.solucao() != null) {
+            this.solucao = respostaAtualizada.solucao();
+        }
     }
 }
