@@ -8,6 +8,7 @@ import com.filiperobot.aluraforumapi.domain.user.DTO.DadosListagemUsuario;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,12 +21,17 @@ import java.util.List;
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping
     @Transactional
     public ResponseEntity<DadosUsuarioCompleto> cadastrar(
             @RequestBody @Valid DadosCadastroUsuario dadosUsuario, UriComponentsBuilder uriBuilder) {
-        var usuario = usuarioRepository.save(new Usuario(dadosUsuario));
+
+        String senhaCriptografada = passwordEncoder.encode(dadosUsuario.senha());
+        var novosDados = new DadosCadastroUsuario(dadosUsuario, senhaCriptografada);
+
+        var usuario = usuarioRepository.save(new Usuario(novosDados));
 
         var uri = uriBuilder.path("/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
 

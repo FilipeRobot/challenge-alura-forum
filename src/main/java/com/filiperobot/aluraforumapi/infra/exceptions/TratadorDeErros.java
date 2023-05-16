@@ -1,6 +1,6 @@
-package com.filiperobot.aluraforumapi.infra;
+package com.filiperobot.aluraforumapi.infra.exceptions;
 
-import com.filiperobot.aluraforumapi.infra.DTO.DadosErrosValidacao;
+import com.filiperobot.aluraforumapi.infra.exceptions.DTO.DadosErrosValidacao;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

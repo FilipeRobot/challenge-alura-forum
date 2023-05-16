@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
-@ToString
 public class Resposta {
 
     @Id

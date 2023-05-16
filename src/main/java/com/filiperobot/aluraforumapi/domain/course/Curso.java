@@ -11,7 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
-@ToString
 public class Curso {
 
     @Id

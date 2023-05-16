@@ -21,7 +21,6 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
-@ToString
 public class Topico {
 
     @Id

@@ -1,4 +1,4 @@
-package com.filiperobot.aluraforumapi.infra.DTO;
+package com.filiperobot.aluraforumapi.infra.exceptions.DTO;
 
 import org.springframework.validation.FieldError;
 

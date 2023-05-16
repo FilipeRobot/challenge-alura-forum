@@ -13,4 +13,12 @@ public record DadosCadastroUsuario(
         @NotBlank(message = "{senha.obrigatoria}")
         @Size(min = 4, message = "{senha.invalida}")
         String senha) {
+
+    public DadosCadastroUsuario(DadosCadastroUsuario usuario, String senhaCriptografada){
+        this(
+                usuario.nome,
+                usuario.email,
+                senhaCriptografada
+        );
+    }
 }
