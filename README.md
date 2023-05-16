@@ -33,8 +33,6 @@
 - `PUT /usuarios`: atualiza os dados de um usuário específico existente
 - `DELETE /usuarios/:id`: remove os dados de um usuário específico existente
 
-[//]: # (## Endpoints - Login)
-
 ## Endpoints - Cursos
 - `GET /cursos`: retorna todos os cursos
 - `GET /cursos/:id`: retorna um curso específico
@@ -48,3 +46,10 @@
 - `POST /topicos`: cria um novo tópico com o título, mensagem, autor e curso informados
 - `PUT /topicos`: atualiza os dados de um tópico específico existente
 - `DELETE /topicos`: remove os dados de um tópico específico existente
+
+## Endpoints - Respostas
+- `GET /respostas`: retorna todas as respostas
+- `GET /respostas/:id`: retorna uma resposta específica
+- `POST /respostas`: cria uma nova resposta com a mensagem, autor e tópico informados
+- `PUT /respostas`: atualiza os dados de uma resposta específica existente
+- `DELETE /respostas`: remove os dados de uma resposta específica existente
