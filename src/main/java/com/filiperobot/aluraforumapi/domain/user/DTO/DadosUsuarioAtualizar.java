@@ -9,4 +9,12 @@ public record DadosUsuarioAtualizar(
         String nome,
         @Size(min = 4, message = "{senha.invalida}")
         String senha) {
+
+        public DadosUsuarioAtualizar(DadosUsuarioAtualizar usuario, String senhaCriptografada) {
+                this(
+                        usuario.id(),
+                        usuario.nome,
+                        senhaCriptografada
+                );
+        }
 }
