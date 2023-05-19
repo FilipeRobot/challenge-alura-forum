@@ -7,6 +7,14 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * <p>Criando a configuração básica da página de documentação da API
+ * utilizando <a href="https://swagger.io/">Swagger</a> implementado
+ * pela <a href="https://www.openapis.org/">OpenAPI</a></p>
+ *
+ * <hr/>
+ * Configurando utilização de autenticação (Token JWT) na pagina da documentação
+ */
 @Configuration
 @OpenAPIDefinition(info = @Info(
         title = "Forum Alura API",
