@@ -23,11 +23,20 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        final String[] postUrlsPermitted = new String[]{
+                "/login",
+                "/usuarios"
+        };
+        final String[] getUrlsPermitted = new String[]{
+                "/swagger-ui/**",
+                "/v3/**"
+        };
+
         return httpSecurity.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+                .requestMatchers(HttpMethod.POST, postUrlsPermitted).permitAll()
+                .requestMatchers(HttpMethod.GET, getUrlsPermitted).permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

@@ -5,6 +5,8 @@ import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCadastroCurso;
 import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoAtualizar;
 import com.filiperobot.aluraforumapi.domain.course.DTO.DadosCursoCompleto;
 import com.filiperobot.aluraforumapi.domain.course.DTO.DadosListagemCurso;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("/cursos")
 @RequiredArgsConstructor
+@Tag(name = "Cursos", description = "Endpoint para gerenciar cursos, criação, busca, listagem, atualização e remoção")
+@SecurityRequirement(name = "TokenJWT")
 public class CursoController {
 
     private final CursoRepository cursoRepository;

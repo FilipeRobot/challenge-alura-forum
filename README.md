@@ -9,6 +9,7 @@
 - [Flyway Migration](https://start.spring.io/)
 - [Spring Security](https://start.spring.io/)
 - [Token JWT](https://jwt.io/)
+- [Swagger](https://swagger.io/)
 
 ## Como utilizar esse repositório
 
@@ -22,6 +23,10 @@
   - `DB_PASSWORD`: A senha do banco de dados
   - `JWT_SECRET`: A "senha/secret" usada/o para gerar e desmontar o Token JWT
 - rode o projeto
+
+## Documentação
+Esse projeto utiliza o Swagger para gerar a documentação, ao rodar o projeto você pode acessar
+o EndPoint `/swagger-ui` para ver a documentação do projeto
 
 ## Endpoints - Autenticação
 - `POST /login`: Faz login na aplicação, devolve o token para ser usado nas próximas requisições
