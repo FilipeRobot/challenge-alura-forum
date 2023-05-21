@@ -71,9 +71,6 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Retorna os dados do usuário encontrado", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = DadosUsuarioCompleto.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Retorna um lista com as informações dos capos inválidos", content = {
-                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = DadosErrosValidacao.class)))
-            }),
             @ApiResponse(responseCode = "403", description = "Bloqueia a requisição caso o token não seja valido ou não foi enviado",
                     content = {@Content(schema = @Schema())})
     })
@@ -109,7 +106,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Retorna os novos dados do usuário atualizado", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = DadosUsuarioCompleto.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Retorna um lista com as informações dos capos inválidos", content = {
+            @ApiResponse(responseCode = "400", description = "Retorna uma lista com as informações dos capos inválidos", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = DadosErrosValidacao.class)))
             }),
             @ApiResponse(responseCode = "403", description = "Bloqueia a requisição caso o token não seja valido ou não foi enviado",
