@@ -26,7 +26,11 @@
 
 ## Documentação
 Esse projeto utiliza o Swagger para gerar a documentação, ao rodar o projeto você pode acessar
-o EndPoint `/swagger-ui` para ver a documentação do projeto
+o EndPoint `/swagger-ui` para ver a documentação do projeto.
+
+Nesse endpoint também é possível executar as funcionalidades da API, note que para isso a pagina vai exigir
+o uso de autenticação via Token JWT que pode ser gerado através do endpoint `POST /login`, que vai exigir
+um usuário previamente cadastrado no endpoint `POST /usuarios` ou na tabela `usuarios` do banco de dados do projeto.
 
 ## Endpoints - Autenticação
 - `POST /login`: Faz login na aplicação, devolve o token para ser usado nas próximas requisições
