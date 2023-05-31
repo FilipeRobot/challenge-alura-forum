@@ -127,7 +127,7 @@ public class RespostaController {
     @Parameters(value = {
             @Parameter(name = "id", required = true, description = "Id da resposta a ser removida")
     })
-    @ApiResponse(responseCode = "200", description = "Caso a exclusão/remoção da resposta seja feita com sucesso",
+    @ApiResponse(responseCode = "204", description = "Caso a exclusão/remoção da resposta seja feita com sucesso",
             content = {@Content(schema = @Schema())})
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         respostaRepository.findById(id).ifPresentOrElse(

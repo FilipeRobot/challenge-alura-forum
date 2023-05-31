@@ -134,7 +134,7 @@ public class UsuarioController {
             @Parameter(name = "id", required = true, description = "Id do usuário a ser removido do banco de dados")
     })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Caso a exclusão/remoção do usuário seja feita com sucesso",
+            @ApiResponse(responseCode = "204", description = "Caso a exclusão/remoção do usuário seja feita com sucesso",
                     content = {@Content(schema = @Schema())}),
             @ApiResponse(responseCode = "403", description = "Bloqueia a requisição caso o token não seja valido ou não foi enviado, " +
                     "também caso o Id informado não é válido ou não foi encontrado",

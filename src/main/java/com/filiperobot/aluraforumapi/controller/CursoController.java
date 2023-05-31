@@ -111,7 +111,7 @@ public class CursoController {
     @Parameters(value = {
             @Parameter(name = "id", required = true, description = "Id do curso a ser removido")
     })
-    @ApiResponse(responseCode = "200", description = "Caso a exclusão/remoção do curso seja feita com sucesso",
+    @ApiResponse(responseCode = "204", description = "Caso a exclusão/remoção do curso seja feita com sucesso",
             content = {@Content(schema = @Schema())})
     public ResponseEntity<Void> remover(@PathVariable Long id){
         cursoRepository.findById(id).ifPresentOrElse(
